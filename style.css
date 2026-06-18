@@ -13,7 +13,7 @@ body {
     overflow-x: hidden;
 }
 
-/* 2. ENTRANCE ANIMATION (ลูกเล่นตอนเปิดหน้าเว็บ) */
+/* 2. ENTRANCE ANIMATION (ลูกเล่น Fade-in เลื่อนขึ้นตอนเปิดหน้าเว็บเบา ๆ) */
 header, section, footer {
     animation: slideUpFade 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
@@ -29,9 +29,9 @@ header, section, footer {
     }
 }
 
-/* 3. HEADER STYLE (เพิ่มมิติด้วยพื้นหลังไล่เฉดสีเบา ๆ) */
+/* 3. HEADER STYLE (ไล่เฉดสีน้ำเงินลึก + วงกลมเรืองแสงตกแต่ง) */
 header {
-    background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%); /* น้ำเงินเนวี่ลึกหรูหรา */
+    background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%); /* น้ำเงินเนวี่หรูหรา */
     color: #ffffff;
     padding: 100px 20px;
     text-align: center;
@@ -39,7 +39,7 @@ header {
     overflow: hidden;
 }
 
-/* ลูกเล่นวงกลมเรืองแสงจาง ๆ ด้านหลังคอนเทนต์ */
+/* ลูกเล่นวงกลมเรืองแสงจาง ๆ ตกแต่งด้านหลังข้อความ */
 header::before {
     content: '';
     position: absolute;
@@ -47,7 +47,7 @@ header::before {
     left: -20%;
     width: 300px;
     height: 300px;
-    background: rgba(56, 189, 248, 0.15);
+    background: rgba(56, 189, 248, 0.2);
     border-radius: 50%;
     filter: blur(50px);
 }
@@ -67,7 +67,7 @@ header p {
     letter-spacing: 1px;
 }
 
-/* 4. SECTION STYLE (จัดวางแบบลอยมีมิติ) */
+/* 4. SECTION STYLE (กล่องคอนเทนต์แบบลอยมีมิติ) */
 section {
     padding: 50px 40px;
     margin: 50px auto;
@@ -86,7 +86,7 @@ h2 {
     display: inline-block;
 }
 
-/* เส้นใต้หัวข้อแบบไล่เฉดสี (Gradient Line) */
+/* เส้นใต้หัวข้อแบบไล่เฉดสีสีสันสดใส */
 h2::after {
     content: '';
     position: absolute;
@@ -98,6 +98,37 @@ h2::after {
     border-radius: 2px;
 }
 
-/* 5. PROJECTS - CARD BOUNCE WITH GLOW EFFECT (การ์ดเด้ง + แสงเรือง) */
+/* 5. PROJECTS - CARD BOUNCE WITH GLOW EFFECT (ลูกเล่นการ์ดเด้งดึ๋ง + แสงเรือง) */
 .project {
     margin-bottom: 25px;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    position: relative;
+    /* ใช้ cubic-bezier เพื่อให้การ์ดเด้งสปริงแบบสมูทเวลาชี้เมาส์ */
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+}
+
+/* แถบสีด้านซ้ายการ์ดเพิ่มความมีอะไร */
+.project::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 6px;
+    background: #3b82f6; 
+    border-radius: 16px 0 0 16px;
+    transition: background 0.3s ease;
+}
+
+/* เมื่อเอาเมาส์ชี้: การ์ดจะลอยขึ้น ขยายใหญ่ขึ้นเล็กน้อย และมีแสงเรืองสีฟ้า */
+.project:hover {
+    transform: translateY(-12px) scale(1.015);
+    border-color: #38bdf8;
+    box-shadow: 0 20px 35px rgba(59, 130, 246, 0.15); /* แสงสีฟ้าเรืองจางๆ */
+}
+
+/* แถบสีเปลี่ยนเป็นสีทองเมื่อเมาส์ชี้ เพิ่ม
