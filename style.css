@@ -1,53 +1,160 @@
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
+/* 1. RESET & BASE STYLE (MINIMALIST) */
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
 }
 
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #fafafa; /* ขาวนวลมินิมอล */
+    color: #2c3e50;
+    overflow-x: hidden;
+}
+
+/* 2. LIGHT ENTRANCE ANIMATION (โหลดหน้าเว็บเบาๆ) */
+header, section, footer {
+    animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 3. HEADER STYLE */
 header {
-    background: #4CAF50;
-    color: white;
-    padding: 20px 0;
+    background: #ffffff;
+    color: #1a1a1a;
+    padding: 80px 20px;
     text-align: center;
+    border-bottom: 1px solid #eeeeee;
 }
 
 header h1 {
-    margin: 0;
+    font-size: 2.8rem;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    font-weight: 700;
 }
 
 header p {
-    margin: 5px 0 0;
+    font-size: 1.1rem;
+    color: #7f8c8d;
+    font-weight: 300;
 }
 
+/* 4. SECTION & CARD BOUNCE EFFECT (ลูกเล่นการ์ดเด้ง) */
 section {
-    padding: 20px;
-    margin: 20px auto;
+    padding: 40px 30px;
+    margin: 40px auto;
     max-width: 800px;
-    background: white;
-    border-radius: 8px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    border: 1px solid #f0f0f0;
+    /* เพิ่ม Transition เวลาขยับภาพรวมของ Section */
+    transition: transform 0.4s ease;
 }
+
 h2 {
-  color: #4CAF50;
+    color: #1a1a1a;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 8px;
 }
+
+/* เส้นใต้หัวข้อแบบคลีนๆ */
+h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 3px;
+    background: #3498db; 
+}
+
+/* ลูกเล่นการ์ดผลงานเด้งดึ๋งเมื่อเอาเมาส์ชี้ (Card Bounce) */
 .project {
     margin-bottom: 20px;
+    padding: 25px;
+    background: #fdfdfd;
+    border-radius: 12px;
+    border: 1px solid #eaeaea;
+    /* ใช้ cubic-bezier เพื่อความเด้งเหมือนสปริง */
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+}
+
+.project:hover {
+    transform: translateY(-10px) scale(1.02);
+    background: #ffffff;
+    border-color: #3498db;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
 }
 
 .project h3 {
     margin: 0 0 10px;
-    color: #333;
+    color: #2c3e50;
+    font-size: 1.3rem;
 }
+
+.project p {
+    color: #7f8c8d;
+    font-size: 0.95rem;
+}
+
+/* 5. SKILLS LIST */
 ul {
-    list-style-type: square; 
-    padding-left: 20px;
+    list-style-type: none; /* เอากล่องสี่เหลี่ยมเดิมออกเพื่อความมินิมอล */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
 }
+
+ul li {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid #eee;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+/* ลูกเล่นเด้งเบาๆ สำหรับป้ายทักษะ */
+ul li:hover {
+    background: #3498db;
+    color: white;
+    transform: translateY(-3px);
+}
+
+/* 6. FOOTER STYLE */
 footer {
     text-align: center;
-    padding: 10px 0;
-    background: #333; 
-    color: white;
-    margin-top: 20px;
+    padding: 40px 20px;
+    background: #1a1a1a;
+    color: #a0a0a0;
+    margin-top: 60px;
+    font-size: 0.9rem;
+}
+
+footer a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #2980b9;
 }
