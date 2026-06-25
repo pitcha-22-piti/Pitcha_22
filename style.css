@@ -1,4 +1,4 @@
-/* 1. RESET & BASE THEME */
+/* ================= 1. RESET & BASE THEME ================= */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -9,160 +9,144 @@ body {
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
     background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite; /* พื้นหลังขยับเปลี่ยนสีตลอดเวลา */
+    animation: gradientBG 15s ease infinite; /* พื้นหลังไล่สีขยับตลอดเวลา */
     color: #ffffff;
     min-height: 100vh;
     overflow-x: hidden;
     perspective: 1000px;
 }
 
-/* แอนิเมชันพื้นหลังไหล */
 @keyframes gradientBG {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
-/* 2. GLOW EFFECT BACKGROUND */
+/* 2. BACKGROUND GLOW EFFECTS */
 .bg-glow {
     position: fixed;
     top: 50%;
     left: 50%;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(0,0,0,0) 70%);
+    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0) 70%);
     transform: translate(-50%, -50%);
     z-index: -1;
-    animation: pulseGlow 4s ease-in-out infinite alternate;
+    animation: pulseGlow 5s ease-in-out infinite alternate;
 }
 
 @keyframes pulseGlow {
-    0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.5; }
-    100% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.9; }
+    0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.4; }
+    100% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.8; }
 }
 
-/* 3. HEADER & MEGA TITLE */
-header {
-    text-align: center;
-    padding: 80px 20px 40px;
-}
-
-.mega-title {
-    font-size: 4rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 5px;
-    color: #fff;
-    text-shadow: 0 0 10px #fff, 0 0 20px #e73c7e, 0 0 40px #e73c7e, 0 0 80px #e73c7e;
-    animation: neonBlink 2s infinite alternate;
-}
-
-.sub-title {
-    font-size: 1.4rem;
-    margin-top: 15px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    font-weight: 300;
-}
-
-@keyframes neonBlink {
-    0%, 100% { filter: brightness(1); }
-    50% { filter: brightness(1.3); transform: scale(1.02); }
-}
-
-/* 4. MAIN CONTAINER & SUPER CARD */
-main {
-    max-width: 1000px;
+/* ================= 3. SECTION STRUCTURE (การแบ่งหน้า) ================= */
+.main-content {
+    max-width: 1100px;
     margin: 0 auto;
     padding: 20px;
 }
 
-.super-card {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(15px); /* กระจกฝ้าสุดหรู */
-    -webkit-backdrop-filter: blur(15px);
-    border: 2px solid rgba(255, 255, 255, 0.25);
-    border-radius: 24px;
-    padding: 50px;
-    text-align: center;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-    transform: style 0.5s;
+/* คลาสหลักสำหรับแบ่งช่องไฟแต่ละ Section */
+.section-block {
+    margin-bottom: 100px; /* เว้นระยะระหว่างเซกชันให้ดูโล่งและหรูหรา */
     animation: fadeInUp 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
 }
 
-.super-card h2 {
+/* ป้ายกำกับเล็กๆ บอกชื่อ Section แบบสายล้ำ */
+.section-tag {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    text-transform: uppercase;
+}
+
+.section-header-center {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-header-center h2 {
     font-size: 2.5rem;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* ================= 4. DETAILED SECTIONS ================= */
+
+/* HERO SECTION (บนสุด) */
+.hero-section {
+    text-align: center;
+    padding: 120px 20px 80px;
+}
+
+.mega-title {
+    font-size: 4.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    text-shadow: 0 0 15px #fff, 0 0 30px #e73c7e, 0 0 60px #e73c7e;
+    animation: neonBlink 2.5s infinite alternate;
+}
+
+.sub-title {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    text-shadow: 0 3px 6px rgba(0,0,0,0.4);
+    font-weight: 300;
+}
+
+@keyframes neonBlink {
+    0%, 100% { filter: brightness(1); transform: scale(1); }
+    50% { filter: brightness(1.25); transform: scale(1.02); }
+}
+
+/* ปุ่มปังๆ */
+.flashy-btn {
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    color: white;
+    border: none;
+    padding: 18px 45px;
+    font-size: 1.25rem;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 40px;
+    box-shadow: 0 0 25px rgba(0, 198, 255, 0.6);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.flashy-btn:hover {
+    transform: scale(1.12) translateY(-5px);
+    box-shadow: 0 0 45px #00c6ff, 0 0 70px #7f00ff;
+    background: linear-gradient(90deg, #ff007f, #7f00ff);
+}
+
+/* SUPER CARD SECTION (กระจกฝ้า) */
+.super-card {
+    background: rgba(255, 255, 255, 0.13);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+    padding: 60px;
+    text-align: center;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+}
+
+.super-card h2 {
+    font-size: 2.8rem;
     margin-bottom: 20px;
     background: linear-gradient(to right, #fff, #ffe600);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-/* ปุ่มกดแบบไฟกระพริบวิบวับ */
-.flashy-btn {
-    background: linear-gradient(90deg, #00c6ff, #0072ff);
-    color: white;
-    border: none;
-    padding: 15px 40px;
+.super-card p {
     font-size: 1.2rem;
-    font-weight: bold;
-    border-radius: 50px;
-    cursor: pointer;
-    margin-top: 30px;
-    box-shadow: 0 0 20px rgba(0, 198, 255, 0.6);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.flashy-btn:hover {
-    transform: scale(1.15) translateY(-5px);
-    box-shadow: 0 0 40px #00c6ff, 0 0 60px #0072ff;
-    background: linear-gradient(90deg, #ff007f, #7f00ff);
-}
-
-/* 5. GRID & MAGIC BOXES (ลูกเล่นกล่องเด้ง 3D) */
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-    margin-top: 40px;
-}
-
-.magic-box {
-    background: rgba(0, 0, 0, 0.4);
-    border-radius: 20px;
-    padding: 35px;
-    text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    cursor: pointer;
-}
-
-/* สีขอบตอน Hover แยกตามกล่องเพื่อความหลากสี */
-.box-1:hover { border-color: #ff007f; box-shadow: 0 15px 30px rgba(255, 0, 127, 0.4); }
-.box-2:hover { border-color: #ffe600; box-shadow: 0 15px 30px rgba(255, 230, 0, 0.4); }
-.box-3:hover { border-color: #00ffff; box-shadow: 0 15px 30px rgba(0, 255, 255, 0.4); }
-
-.magic-box:hover {
-    transform: translateY(-15px) rotateX(10deg) rotateY(-5deg) scale(1.05);
-    background: rgba(0, 0, 0, 0.6);
-}
-
-.magic-box h3 {
-    font-size: 1.6rem;
-    margin-bottom: 10px;
-}
-
-/* 6. FOOTER */
-footer {
-    text-align: center;
-    padding: 50px 20px;
-    margin-top: 60px;
-    font-size: 1rem;
-    background: rgba(0, 0, 0, 0.2);
-    letter-spacing: 1px;
-}
-
-/* ANIMATION EFFECT */
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(40px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+    line-
