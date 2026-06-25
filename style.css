@@ -1,4 +1,4 @@
-/* 1. RESET & BASE STYLE (MINIMALIST) */
+/* 1. RESET & BASE THEME */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -6,155 +6,163 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    background-color: #fafafa; /* ขาวนวลมินิมอล */
-    color: #2c3e50;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite; /* พื้นหลังขยับเปลี่ยนสีตลอดเวลา */
+    color: #ffffff;
+    min-height: 100vh;
     overflow-x: hidden;
+    perspective: 1000px;
 }
 
-/* 2. LIGHT ENTRANCE ANIMATION (โหลดหน้าเว็บเบาๆ) */
-header, section, footer {
-    animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+/* แอนิเมชันพื้นหลังไหล */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* 2. GLOW EFFECT BACKGROUND */
+.bg-glow {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(0,0,0,0) 70%);
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    animation: pulseGlow 4s ease-in-out infinite alternate;
 }
 
-/* 3. HEADER STYLE */
+@keyframes pulseGlow {
+    0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.5; }
+    100% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.9; }
+}
+
+/* 3. HEADER & MEGA TITLE */
 header {
-    background: #ffffff;
-    color: #1a1a1a;
-    padding: 80px 20px;
     text-align: center;
-    border-bottom: 1px solid #eeeeee;
+    padding: 80px 20px 40px;
 }
 
-header h1 {
-    font-size: 2.8rem;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
-    font-weight: 700;
+.mega-title {
+    font-size: 4rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    color: #fff;
+    text-shadow: 0 0 10px #fff, 0 0 20px #e73c7e, 0 0 40px #e73c7e, 0 0 80px #e73c7e;
+    animation: neonBlink 2s infinite alternate;
 }
 
-header p {
-    font-size: 1.1rem;
-    color: #7f8c8d;
+.sub-title {
+    font-size: 1.4rem;
+    margin-top: 15px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     font-weight: 300;
 }
 
-/* 4. SECTION & CARD BOUNCE EFFECT (ลูกเล่นการ์ดเด้ง) */
-section {
-    padding: 40px 30px;
-    margin: 40px auto;
-    max-width: 800px;
-    background: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-    border: 1px solid #f0f0f0;
-    /* เพิ่ม Transition เวลาขยับภาพรวมของ Section */
-    transition: transform 0.4s ease;
+@keyframes neonBlink {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.3); transform: scale(1.02); }
 }
 
-h2 {
-    color: #1a1a1a;
-    font-size: 1.8rem;
-    margin-bottom: 25px;
-    position: relative;
-    padding-bottom: 8px;
+/* 4. MAIN CONTAINER & SUPER CARD */
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-/* เส้นใต้หัวข้อแบบคลีนๆ */
-h2::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 40px;
-    height: 3px;
-    background: #3498db; 
+.super-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px); /* กระจกฝ้าสุดหรู */
+    -webkit-backdrop-filter: blur(15px);
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    border-radius: 24px;
+    padding: 50px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    transform: style 0.5s;
+    animation: fadeInUp 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
 }
 
-/* ลูกเล่นการ์ดผลงานเด้งดึ๋งเมื่อเอาเมาส์ชี้ (Card Bounce) */
-.project {
+.super-card h2 {
+    font-size: 2.5rem;
     margin-bottom: 20px;
-    padding: 25px;
-    background: #fdfdfd;
-    border-radius: 12px;
-    border: 1px solid #eaeaea;
-    /* ใช้ cubic-bezier เพื่อความเด้งเหมือนสปริง */
+    background: linear-gradient(to right, #fff, #ffe600);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ปุ่มกดแบบไฟกระพริบวิบวับ */
+.flashy-btn {
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 30px;
+    box-shadow: 0 0 20px rgba(0, 198, 255, 0.6);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.flashy-btn:hover {
+    transform: scale(1.15) translateY(-5px);
+    box-shadow: 0 0 40px #00c6ff, 0 0 60px #0072ff;
+    background: linear-gradient(90deg, #ff007f, #7f00ff);
+}
+
+/* 5. GRID & MAGIC BOXES (ลูกเล่นกล่องเด้ง 3D) */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.magic-box {
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
+    padding: 35px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     cursor: pointer;
 }
 
-.project:hover {
-    transform: translateY(-10px) scale(1.02);
-    background: #ffffff;
-    border-color: #3498db;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+/* สีขอบตอน Hover แยกตามกล่องเพื่อความหลากสี */
+.box-1:hover { border-color: #ff007f; box-shadow: 0 15px 30px rgba(255, 0, 127, 0.4); }
+.box-2:hover { border-color: #ffe600; box-shadow: 0 15px 30px rgba(255, 230, 0, 0.4); }
+.box-3:hover { border-color: #00ffff; box-shadow: 0 15px 30px rgba(0, 255, 255, 0.4); }
+
+.magic-box:hover {
+    transform: translateY(-15px) rotateX(10deg) rotateY(-5deg) scale(1.05);
+    background: rgba(0, 0, 0, 0.6);
 }
 
-.project h3 {
-    margin: 0 0 10px;
-    color: #2c3e50;
-    font-size: 1.3rem;
+.magic-box h3 {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
 }
 
-.project p {
-    color: #7f8c8d;
-    font-size: 0.95rem;
-}
-
-/* 5. SKILLS LIST */
-ul {
-    list-style-type: none; /* เอากล่องสี่เหลี่ยมเดิมออกเพื่อความมินิมอล */
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-}
-
-ul li {
-    background: #f8f9fa;
-    padding: 15px;
-    border-radius: 8px;
-    text-align: center;
-    border: 1px solid #eee;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-/* ลูกเล่นเด้งเบาๆ สำหรับป้ายทักษะ */
-ul li:hover {
-    background: #3498db;
-    color: white;
-    transform: translateY(-3px);
-}
-
-/* 6. FOOTER STYLE */
+/* 6. FOOTER */
 footer {
     text-align: center;
-    padding: 40px 20px;
-    background: #1a1a1a;
-    color: #a0a0a0;
+    padding: 50px 20px;
     margin-top: 60px;
-    font-size: 0.9rem;
+    font-size: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    letter-spacing: 1px;
 }
 
-footer a {
-    color: #3498db;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-footer a:hover {
-    color: #2980b9;
+/* ANIMATION EFFECT */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
 }
