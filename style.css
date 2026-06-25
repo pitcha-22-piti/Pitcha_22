@@ -1,4 +1,4 @@
-/* ================= 1. RESET & BASE THEME ================= */
+/* 1. RESET & BASE STYLE */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -6,147 +6,197 @@
 }
 
 body {
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite; /* พื้นหลังไล่สีขยับตลอดเวลา */
-    color: #ffffff;
-    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.7;
+    background-color: #f8fafc; /* พื้นหลังเทาอมฟ้าสว่าง สบายตา */
+    color: #334155;
     overflow-x: hidden;
-    perspective: 1000px;
 }
 
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+/* 2. ENTRANCE ANIMATION (ลูกเล่น Fade-in เลื่อนขึ้นตอนเปิดหน้าเว็บเบา ๆ) */
+header, section, footer {
+    animation: slideUpFade 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* 2. BACKGROUND GLOW EFFECTS */
-.bg-glow {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0) 70%);
-    transform: translate(-50%, -50%);
-    z-index: -1;
-    animation: pulseGlow 5s ease-in-out infinite alternate;
+@keyframes slideUpFade {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-@keyframes pulseGlow {
-    0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.4; }
-    100% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.8; }
+/* 3. HEADER STYLE (ไล่เฉดสีน้ำเงินลึก + วงกลมเรืองแสงตกแต่ง) */
+header {
+    background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%); /* น้ำเงินเนวี่หรูหรา */
+    color: #ffffff;
+    padding: 100px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
 }
 
-/* ================= 3. SECTION STRUCTURE (การแบ่งหน้า) ================= */
-.main-content {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 20px;
+/* ลูกเล่นวงกลมเรืองแสงจาง ๆ ตกแต่งด้านหลังข้อความ */
+header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -20%;
+    width: 300px;
+    height: 300px;
+    background: rgba(56, 189, 248, 0.2);
+    border-radius: 50%;
+    filter: blur(50px);
 }
 
-/* คลาสหลักสำหรับแบ่งช่องไฟแต่ละ Section */
-.section-block {
-    margin-bottom: 100px; /* เว้นระยะระหว่างเซกชันให้ดูโล่งและหรูหรา */
-    animation: fadeInUp 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
-}
-
-/* ป้ายกำกับเล็กๆ บอกชื่อ Section แบบสายล้ำ */
-.section-tag {
-    display: inline-block;
-    background: rgba(255, 255, 255, 0.2);
-    padding: 6px 16px;
-    border-radius: 50px;
-    font-size: 0.85rem;
-    font-weight: bold;
-    letter-spacing: 2px;
+header h1 {
+    font-size: 3.2rem;
+    letter-spacing: 3px;
     margin-bottom: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    text-transform: uppercase;
+    font-weight: 800;
+    color: #f8fafc;
 }
 
-.section-header-center {
-    text-align: center;
-    margin-bottom: 40px;
+header p {
+    font-size: 1.2rem;
+    color: #38bdf8; /* สีฟ้าสว่างเน้นข้อความ */
+    font-weight: 400;
+    letter-spacing: 1px;
 }
 
-.section-header-center h2 {
-    font-size: 2.5rem;
-    text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+/* 4. SECTION STYLE (กล่องคอนเทนต์แบบลอยมีมิติ) */
+section {
+    padding: 50px 40px;
+    margin: 50px auto;
+    max-width: 850px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04); /* เงาฟุ้งแบบซอฟต์ */
+    border: 1px solid #f1f5f9;
 }
 
-/* ================= 4. DETAILED SECTIONS ================= */
-
-/* HERO SECTION (บนสุด) */
-.hero-section {
-    text-align: center;
-    padding: 120px 20px 80px;
+h2 {
+    color: #0f172a;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
 }
 
-.mega-title {
-    font-size: 4.5rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 6px;
-    text-shadow: 0 0 15px #fff, 0 0 30px #e73c7e, 0 0 60px #e73c7e;
-    animation: neonBlink 2.5s infinite alternate;
+/* เส้นใต้หัวข้อแบบไล่เฉดสีสีสันสดใส */
+h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #38bdf8);
+    border-radius: 2px;
 }
 
-.sub-title {
-    font-size: 1.5rem;
-    margin-top: 20px;
-    text-shadow: 0 3px 6px rgba(0,0,0,0.4);
-    font-weight: 300;
-}
-
-@keyframes neonBlink {
-    0%, 100% { filter: brightness(1); transform: scale(1); }
-    50% { filter: brightness(1.25); transform: scale(1.02); }
-}
-
-/* ปุ่มปังๆ */
-.flashy-btn {
-    background: linear-gradient(90deg, #00c6ff, #0072ff);
-    color: white;
-    border: none;
-    padding: 18px 45px;
-    font-size: 1.25rem;
-    font-weight: bold;
-    border-radius: 50px;
+/* 5. PROJECTS - CARD BOUNCE WITH GLOW EFFECT (ลูกเล่นการ์ดเด้งดึ๋ง + แสงเรือง) */
+.project {
+    margin-bottom: 25px;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    position: relative;
+    /* ใช้ cubic-bezier เพื่อให้การ์ดเด้งสปริงแบบสมูทเวลาชี้เมาส์ */
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     cursor: pointer;
-    margin-top: 40px;
-    box-shadow: 0 0 25px rgba(0, 198, 255, 0.6);
+}
+
+/* แถบสีด้านซ้ายการ์ดเพิ่มความมีอะไร */
+.project::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 6px;
+    background: #3b82f6; 
+    border-radius: 16px 0 0 16px;
+    transition: background 0.3s ease;
+}
+
+/* เมื่อเอาเมาส์ชี้: การ์ดจะลอยขึ้น ขยายใหญ่ขึ้นเล็กน้อย และมีแสงเรืองสีฟ้า */
+.project:hover {
+    transform: translateY(-12px) scale(1.015);
+    border-color: #38bdf8;
+    box-shadow: 0 20px 35px rgba(59, 130, 246, 0.15); /* แสงสีฟ้าเรืองจางๆ */
+}
+
+/* แถบสีเปลี่ยนเป็นสีทองเมื่อเมาส์ชี้ เพิ่มลูกเล่นสีสัน */
+.project:hover::before {
+    background: #d97706; 
+}
+
+.project h3 {
+    margin: 0 0 12px 10px;
+    color: #1e3a8a;
+    font-size: 1.4rem;
+}
+
+.project p {
+    color: #475569;
+    font-size: 1rem;
+    padding-left: 10px;
+}
+
+/* 6. SKILLS LIST - COLORFUL BADGES (ป้ายทักษะมีสีสัน) */
+ul {
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+ul li {
+    background: #e0f2fe; /* บล๊อกสีฟ้าพาสเทลสดใส */
+    color: #0369a1;
+    padding: 18px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid #bae6fd;
+    font-weight: 600;
+    font-size: 1rem;
+    /* เพิ่ม transition สปริงให้ป้ายทักษะด้วย */
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.flashy-btn:hover {
-    transform: scale(1.12) translateY(-5px);
-    box-shadow: 0 0 45px #00c6ff, 0 0 70px #7f00ff;
-    background: linear-gradient(90deg, #ff007f, #7f00ff);
+/* ป้ายทักษะเด้งสลับสีเป็นสีน้ำเงินเข้มตัวอักษรขาวตอนเมาส์ชี้ */
+ul li:hover {
+    background: #1e3a8a;
+    color: #ffffff;
+    border-color: #1e3a8a;
+    transform: translateY(-6px);
+    box-shadow: 0 10px 20px rgba(30, 58, 138, 0.2);
 }
 
-/* SUPER CARD SECTION (กระจกฝ้า) */
-.super-card {
-    background: rgba(255, 255, 255, 0.13);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 30px;
-    padding: 60px;
+/* 7. FOOTER STYLE */
+footer {
     text-align: center;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+    padding: 50px 20px;
+    background: #0f172a;
+    color: #94a3b8;
+    margin-top: 80px;
+    font-size: 0.95rem;
+    border-top: 3px solid #d97706; /* เส้นตัดขอบบนสีทองวอร์ม */
 }
 
-.super-card h2 {
-    font-size: 2.8rem;
-    margin-bottom: 20px;
-    background: linear-gradient(to right, #fff, #ffe600);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+footer a {
+    color: #38bdf8;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
 }
 
-.super-card p {
-    font-size: 1.2rem;
-    line-
+footer a:hover {
+    color: #fbbf24; /* ลิงก์อีเมลเปลี่ยนเป็นสีทองไฮไลท์เมื่อชี้ */
+    text-decoration: underline;
+}
